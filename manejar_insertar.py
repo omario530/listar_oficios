@@ -56,15 +56,15 @@ def insertar_datos():
                         anterior = res_a[0]
 
                 # consulta de datos
-                if x + 1 > n_col:
-                        texto = "SELECT carpeta_" + str(x-1) + ", carpeta_" + str(x) + ", 1 as vacio, ruta " + \
+                if x + 1 >= n_col:
+                        texto = "SELECT carpeta_" + str(x-1) + ", carpeta_" + str(x) + ", 0 as carpeta_" + str(x+1) + ", ruta " + \
                         "FROM explorador_asc" +\
                         " GROUP BY carpeta_" + str(x) + " ORDER BY carpeta_" + str(x-1) + " ASC, carpeta_" + str(x) + " ASC;"
                 else:
                         texto = "SELECT carpeta_" + str(x-1) + ", carpeta_" + str(x) + ", COUNT(carpeta_" + str(x+1) + "), ruta " + \
                                         "FROM explorador_asc" +\
                                         " GROUP BY carpeta_" + str(x) + " ORDER BY carpeta_" + str(x-1) + " ASC, carpeta_" + str(x) + " ASC;"
-                
+        
                 cursor.execute(texto)
                 resultado = cursor.fetchall()
                 
