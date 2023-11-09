@@ -28,13 +28,48 @@ def seleccionar_carpeta():
     respuesta = messagebox.askyesno(title="Carpeta Seleccionada", message=folder_path + "¿Desea continuar?", type = 'yesno')
 
     if respuesta:
-        
-        # exportar datos a la BD
+
+        if folder_path != None:
+            obtener_archivos(folder_path)
+
+            # llamar a manejar_tablas
+            #borrar_tablas()
+            #crear_tablas()
+
+            # llamar a manejar_archivos
+            #tabla_explorador()
+            #insertar_datos_explorador() 
+            #tabla_explorador_asc() 
+            #insertar_datos_explorador_asc()
+
+            # llamar a manejar_insertar
+            #insertar_datos_1()
+            #insertar_datos()
+            #insertar_datos_n()
+            #codigo_html_nivel_1(folder_path)
+            #codigo_html_niveles(folder_path)
+            #codigo_html_nivel_n(folder_path)
+
+            # llamar a manejar_vista
+            #borrar_vista()
+            #crear_vista()
+
+            # llamar a crear_tabla
+            #tabla()
+
+
+            print("datos exportados a BD")        
+        else:
+            print("Ruta no verificable")
+
+# obtener los nombres de los arhivos
+def obtener_archivos(folder_path):
+    # exportar datos a la BD
         conn = sqlite3.connect("static/arbol_oficios.db")
         cursor = conn.cursor()
         conteo = 0
 
-    if folder_path != None:
+    
         # borrar los datos de la BD
         cursor.execute("DELETE FROM carpetas;")
         cursor.execute("DELETE FROM archivos;")
@@ -77,7 +112,7 @@ def seleccionar_carpeta():
                     elementos = os.listdir(ruta_carpeta)
                     for elemento in elementos:
                         elemento_path = os.path.join(ruta_carpeta, elemento)
-                        print(elemento_path)
+                        # print(elemento_path)
 
                         #  extraer el nombre de los archivos
                         if os.path.isfile(elemento_path):
@@ -94,38 +129,7 @@ def seleccionar_carpeta():
                 if conteo == 0:
                     break
 
-            # llamar a manejar_tablas
-            borrar_tablas()
-            crear_tablas()
-
-            # llamar a manejar_archivos
-            tabla_explorador()
-            insertar_datos_explorador() 
-            tabla_explorador_asc() 
-            insertar_datos_explorador_asc()
-
-            # llamar a manejar_insertar
-            insertar_datos_1()
-            insertar_datos()
-            insertar_datos_n()
-            codigo_html_nivel_1(folder_path)
-            codigo_html_niveles(folder_path)
-            codigo_html_nivel_n(folder_path)
-
-            # llamar a manejar_vista
-            borrar_vista()
-            crear_vista()
-
-            # llamar a crear_tabla
-            tabla()
-
-
-            print("datos exportados a BD")        
-        else:
-            print("Ruta no verificable")
-
-        
-        
+# datos del formulario de tkinter  ------------------------------------------------------------------------
 root = Tk()
 # formulario
 root.title("Carpeta a analizar")
