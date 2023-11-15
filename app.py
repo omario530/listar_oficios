@@ -37,6 +37,8 @@ def seleccionar_carpeta():
         if folder_path != None:
             # obtener los nombres de los arhivos
             act_i(folder_path)
+
+            # crear tabla archivos_i
             act_ii()
 
             print("datos exportados a BD")        
@@ -106,6 +108,7 @@ def act_i(folder_path):
             if conteo == 0:
                 break
 
+# crear tabla archivos_i
 def act_ii():
     num_carpetas = []
     try:
@@ -128,7 +131,7 @@ def act_ii():
             if encontrar > -1:
                 cuenta += 1
         num_carpetas.append(cuenta)
-    max_num_carpetas = max(num_carpetas)
+    max_num_carpetas = max(num_carpetas) + 1
 
     # crear la tabla archivos_i
     texto = ""
@@ -142,7 +145,6 @@ def act_ii():
     conn.commit()
 
     conn.close()
-
 
 
 # datos del formulario de tkinter  ------------------------------------------------------------------------
